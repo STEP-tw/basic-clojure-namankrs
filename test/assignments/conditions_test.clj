@@ -40,3 +40,10 @@
     (are [x y] (= x y)
                nil (duplicate-first [])
                nil (duplicate-first `()))))
+
+(deftest five-point-someone-test
+  (are [x y] (= x y)
+             :chetan-bhagat (five-point-someone 0 5)
+             :satan-bhagat (five-point-someone 5 0)
+             :greece (five-point-someone 2 1)
+             :universe (five-point-someone 1 2)))
