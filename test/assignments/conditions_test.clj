@@ -22,3 +22,11 @@
     (are [x y] (= x y)
                nil (harishchandra false)
                nil (harishchandra nil))))
+
+(deftest yudishtira-test
+  (testing "truthy values"
+    (is (= 2 (yudishtira 2))))
+  (testing "falsy values"
+    (are [x y] (= x y)
+               :ashwathama (yudishtira false)
+               :ashwathama (yudishtira nil))))
