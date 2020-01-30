@@ -30,3 +30,13 @@
     (are [x y] (= x y)
                :ashwathama (yudishtira false)
                :ashwathama (yudishtira nil))))
+
+(deftest duplicate-first-test
+  (testing "coll with values"
+    (are [x y] (= x y)
+               [1 1 2] (duplicate-first [1 2])
+               `(4 4 3) (duplicate-first `(4 3))))
+  (testing "empty coll"
+    (are [x y] (= x y)
+               nil (duplicate-first [])
+               nil (duplicate-first `()))))
