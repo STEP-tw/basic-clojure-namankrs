@@ -11,3 +11,8 @@
   (are [x y] (= x y)
              `(1 2) (filter pos-int? `(-1 1 2))
              `(3 4) (filter (partial < 2) `(1 2 3 4))))
+
+(deftest count'-test
+  (are [x y] (= x y)
+             0 (count' [])
+             3 (count' [1 2 3])))
