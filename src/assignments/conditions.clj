@@ -124,7 +124,7 @@
   [1 2 3] -> (4 3 2 0 2 3 4)"
   {:level        :easy
    :use          '[as-> reverse]
-   :implemented? false}
+   :implemented? true}
   [coll] (as-> coll result
                (map inc result)
                (conj result 0 (reverse result))
