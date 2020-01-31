@@ -71,3 +71,9 @@
              :empty-map (zero-aliases {})
              :empty-string (zero-aliases "")
              :not-zero (zero-aliases "not-zero-value")))
+
+(deftest zero-separated-palindrome-test
+  (testing "list with values"
+    (are [x y] (= x y)
+               `(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3])
+               `(7 6 5 0 5 6 7) (zero-separated-palindrome [4 5 6]))))

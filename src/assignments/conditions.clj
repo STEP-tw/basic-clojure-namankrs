@@ -125,4 +125,7 @@
   {:level        :easy
    :use          '[as-> reverse]
    :implemented? false}
-  [coll])
+  [coll] (as-> coll result
+               (map inc result)
+               (conj result 0 (reverse result))
+               (flatten result)))
