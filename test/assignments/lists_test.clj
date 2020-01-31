@@ -16,3 +16,12 @@
   (are [x y] (= x y)
              0 (count' [])
              3 (count' [1 2 3])))
+
+(deftest reverse'-test
+  (testing "seqable values"
+    (are [x y] (= x y)
+               `(3 2 1) (reverse' [1 2 3])
+               `() (reverse' [])
+               `(1) (reverse' [1])))
+  (testing "non-seqable values"
+    (is (= nil (reverse' 1)))))
