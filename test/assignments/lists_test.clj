@@ -25,3 +25,16 @@
                `(1) (reverse' [1])))
   (testing "non-seqable values"
     (is (= nil (reverse' 1)))))
+
+(deftest every?'-test
+  (are [x y] (= x y)
+             true (every?' zero? [0 0])
+             false (every?' zero? [0 1])
+             true (every?' zero? [])
+             ))
+
+(deftest some?'-test
+  (are [x y] (= x y)
+             false (some?' zero? [1 1])
+             true (some?' zero? [0 1])
+             ))

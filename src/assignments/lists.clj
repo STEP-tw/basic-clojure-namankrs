@@ -18,10 +18,10 @@
    :use          '[loop recur]
    :dont-use     '[filter]
    :implemented? true}
-  [pred coll] (loop [pred pred coll coll result `()]
+  [pred coll] (loop [coll coll result `()]
                 (if (empty? coll)
                   result
-                  (recur pred (rest coll) (conj result (pred (first coll)))))))
+                  (recur (rest coll) (conj result (pred (first coll)))))))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
@@ -63,8 +63,11 @@
   {:level        :easy
    :use          '[loop recur and]
    :dont-use     '[every?]
-   :implemented? false}
-  ([pred coll]))
+   :implemented? true}
+  ([pred coll] (loop [coll coll result true]
+                 (if (empty? coll)
+                   result
+                   (recur (rest coll) (and result (pred (first coll))))))))
 
 (defn some?'
   "Implement your own version of some that checks if at least one
@@ -74,8 +77,11 @@
   {:level        :easy
    :use          '[loop recur or]
    :dont-use     '[some]
-   :implemented? false}
-  ([pred coll]))
+   :implemented? true}
+  ([pred coll] (loop [coll coll result false]
+                 (if (empty? coll)
+                   result
+                   (recur (rest coll) (or result (pred (first coll))))))))
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
