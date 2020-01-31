@@ -107,8 +107,15 @@
   \"\"  -> :empty-string"
   {:level        :easy
    :use          '[case]
-   :implemented? false}
-  [zero-like-value])
+   :implemented? true}
+  [zero-like-value] (case zero-like-value
+                      0 :zero
+                      [] :empty
+                      `() :empty
+                      #{} :empty-set
+                      {} :empty-map
+                      "" :empty-string
+                      :not-zero))
 
 (defn zero-separated-palindrome
   "Given a sequence of numbers, increment the list
