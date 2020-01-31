@@ -83,7 +83,7 @@
    :use          '[cond->> concat take]
    :implemented? true}
   [coll rep? truncate? n] (cond->> coll
-                                   rep? (repeat 2)
+                                   rep? (repeat)
                                    true (flatten)
                                    truncate? (take n)))
 

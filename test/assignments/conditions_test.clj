@@ -49,12 +49,10 @@
              :universe (five-point-someone 1 2)))
 
 (deftest repeat-and-truncate-test
-  (testing "repeat"
-    (is (= `(1 2 1 2) (repeat-and-truncate `(1 2) true false 0))))
   (testing "truncate"
     (is (= `(1 2) (repeat-and-truncate `(1 2 3 4) false true 2))))
   (testing "repeat and truncate"
-    (is (= `(1 2 1 2) (repeat-and-truncate `(1 2) true false 0)))))
+    (is (= `(1 2 1 2) (repeat-and-truncate `(1 2) true true 4)))))
 
 (deftest order-in-words-test
   (are [x y] (= x y)
