@@ -77,3 +77,11 @@
     (are [x y] (= x y)
                `(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3])
                `(7 6 5 0 5 6 7) (zero-separated-palindrome [4 5 6]))))
+
+(deftest conditions-apply-test
+  (are [x y] (= x y)
+             :wonder-woman (conditions-apply `(1 2 3))
+             :durga (conditions-apply `(:a :b :c :d))
+             :cleopatra (conditions-apply `([2 3] [4 5]))
+             :tuntun (conditions-apply `(1 3 2)))
+  )

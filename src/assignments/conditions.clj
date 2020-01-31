@@ -66,7 +66,8 @@
    :use          '[condp filter]
    :alternates   '[if cond]
    :implemented? false}
-  [coll])
+  [coll] (cond
+           (= `(1 3) (filter #(or (= 1 %) (= 3 %)) coll)) :wonder-woman))
 
 (defn repeat-and-truncate
   "Given coll and options to repeat and truncate
