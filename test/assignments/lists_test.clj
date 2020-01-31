@@ -38,3 +38,10 @@
              false (some?' zero? [1 1])
              true (some?' zero? [0 1])
              ))
+
+(deftest ascending?-test
+  (are [x y] (= x y)
+             true (ascending? [1 2 3 4])
+             true (ascending? [1 2 2 3 4 4])
+             false (ascending? [1 2 5 4])
+             ))
