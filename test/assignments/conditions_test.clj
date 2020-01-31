@@ -83,5 +83,5 @@
              :wonder-woman (conditions-apply `(1 2 3))
              :durga (conditions-apply `(:a :b :c :d))
              :cleopatra (conditions-apply `([2 3] [4 5]))
-             :tuntun (conditions-apply `(1 3 2)))
+             :tuntun (conditions-apply `(3 1 2)))
   )
