@@ -76,7 +76,10 @@
   {:level        :medium
    :use          '[cond->> concat take]
    :implemented? false}
-  [coll rep? truncate? n])
+  [coll rep? truncate? n] (cond->> coll
+                                   rep? (repeat 2)
+                                   true (flatten)
+                                   truncate? (take n)))
 
 (defn order-in-words
   "Given x, y and z, returns a vector consisting of
