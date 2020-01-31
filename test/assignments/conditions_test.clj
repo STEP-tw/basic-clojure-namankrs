@@ -55,3 +55,9 @@
     (is (= `(1 2) (repeat-and-truncate `(1 2 3 4) false true 2))))
   (testing "repeat and truncate"
     (is (= `(1 2 1 2) (repeat-and-truncate `(1 2) true false 0)))))
+
+(deftest order-in-words-test
+  (are [x y] (= x y)
+             [:x-greater-than-y :y-greater-than-z] (order-in-words 4 3 2)
+             [:x-greater-than-y :z-greater-than-x] (order-in-words 4 3 5)
+             [:z-greater-than-x] (order-in-words 2 3 4)))
