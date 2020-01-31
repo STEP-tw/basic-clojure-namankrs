@@ -6,3 +6,8 @@
   (testing "map"
     (testing "identity with single coll"
       (is (= [1 2 3] (map' identity [1 2 3]))))))
+
+(deftest filter'-test
+  (are [x y] (= x y)
+             `(1 2) (filter pos-int? `(-1 1 2))
+             `(3 4) (filter (partial < 2) `(1 2 3 4))))
