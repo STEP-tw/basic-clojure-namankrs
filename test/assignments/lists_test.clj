@@ -63,3 +63,7 @@
              `(1 2 3) (union [1 2 3] [])
              `(1 2 3) (union [] [1 2 3])))
 
+
+(deftest points-around-origin-test
+  (testing "eight points around origin"
+    (is (= `([0 -1] [0 1] [-1 0] [-1 -1] [-1 1] [1 0] [1 -1] [1 1]) (points-around-origin)))))

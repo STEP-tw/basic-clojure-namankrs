@@ -169,11 +169,13 @@
   ^{:level        :easy
     :use          '[for]
     :dont-use     '[hardcoded-values map filter]
-    :implemented? false}
+    :implemented? true}
   points-around-origin
   "Calculate all the points around the origin
   [-1 -1] [0 -1] [1 -1] etc. There should be 8 points
-  Note this is a def, not a defn")
+  Note this is a def, not a defn"
+  (fn [] (rest (for [x `(0 -1 1) y `(0 -1 1)] [x y]))))
+
 
 (defn cross-product
   "Given two sequences, generate every combination in the sequence
