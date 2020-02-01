@@ -268,7 +268,10 @@
    :use          '[loop recur rest]
    :dont-use     '[.indexOf memfn]
    :implemented? false}
-  [coll n])
+  [coll n] (loop [coll coll curr-index 0 match-index -1]
+             (if (or (empty? coll) (not= match-index -1))
+               match-index
+               (recur (rest coll) (inc curr-index) (if (= (first coll) n) curr-index -1)))))
 
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."

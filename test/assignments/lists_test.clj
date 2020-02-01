@@ -103,3 +103,9 @@
              true (palindrome? [\n \a \m \a \n])
              true (palindrome? [1 0 0 1])
              false (palindrome? [\n \a \m])))
+
+(deftest index-of-test
+  (are [x y] (= x y)
+             0 (index-of [1 2 3 4] 1)
+             2 (index-of [1 2 3 4] 3)
+             -1 (index-of [1 2 3 4] 5)))
