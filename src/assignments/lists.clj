@@ -246,8 +246,8 @@
   {:level        :easy
    :use          '[map cycle]
    :dont-use     '[loop recur map-indexed take take-nth]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll] (map #(if (= (first %) 0) 0 (second %)) (map vector (cycle [1 2 0]) coll)))
 
 (defn palindrome?
   "Implement a recursive palindrome check of any given sequence"
