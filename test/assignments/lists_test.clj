@@ -126,3 +126,7 @@
              `(1 2 3) (distinct' `(1 1 2 2 3 3 3))
              `(1 2 3) (distinct' `(1 2 2 1 3 3 3))
              `() (distinct' `())))
+
+(deftest dedupe'-test
+  (are [x y] (= x y)
+             `(1 2 3 4 3) (dedupe' [1 1 2 3 4 3 3])))
