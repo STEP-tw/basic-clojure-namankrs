@@ -72,3 +72,8 @@
   (are [x y] (= x y)
              [[1 3] [1 4] [2 3] [2 4]] (cross-product [1 2] [3 4])
              [[1 2] [1 3]] (cross-product [1 2] [2 3])))
+
+(deftest double-up-test
+  (are [x y] (= x y)
+             `(1 1 2 2 3 3) (double-up [1 2 3])
+             `() (double-up [])))
