@@ -223,6 +223,8 @@
    :implemented? false}
   [coll nesting-factor])
 
+(defn interleave-even [coll] (apply interleave (split-at (int (/ (count coll) 2)) coll)))
+
 (defn split-comb
   "Given a collection, return a new sequence where the first
   half of the sequence is interleaved with the second half.
@@ -232,8 +234,10 @@
   {:level        :easy
    :use          '[interleave split-at if rem concat take-last]
    :dont-use     '[loop recur map-indexed take drop]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll] (if (even? (count coll))
+           (interleave-even coll)
+           (concat (interleave-even coll) (take-last 1 coll))))
 
 (defn muted-thirds
   "Given a sequence of numbers, make every third element
