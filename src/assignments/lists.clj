@@ -201,7 +201,7 @@
   {:level        :easy
    :use          '[keep-indexed when :optionally map-indexed filter]
    :implemented? false}
-  [coll])
+  [coll] (keep-indexed #(if (or (zero? (mod %1 3)) (zero? (mod %1 5))) %2) coll))
 
 (defn sqr-of-the-first
   "Given a collection, return a new collection that contains the

@@ -77,3 +77,9 @@
   (are [x y] (= x y)
              `(1 1 2 2 3 3) (double-up [1 2 3])
              `() (double-up [])))
+
+(deftest third-or-fifth-test
+  (are [x y] (= x y)
+             `(0) (third-or-fifth [0 1 2])
+             `(0 3 5) (third-or-fifth [0 1 2 3 4 5])
+             `(0 3 5 6 9 10) (third-or-fifth [0 1 2 3 4 5 6 7 8 9 10])))
