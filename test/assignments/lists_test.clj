@@ -67,3 +67,8 @@
 (deftest points-around-origin-test
   (testing "eight points around origin"
     (is (= `([0 -1] [0 1] [-1 0] [-1 -1] [-1 1] [1 0] [1 -1] [1 1]) (points-around-origin)))))
+
+(deftest cross-product-test
+  (are [x y] (= x y)
+             [[1 3] [1 4] [2 3] [2 4]] (cross-product [1 2] [3 4])
+             [[1 2] [1 3]] (cross-product [1 2] [2 3])))

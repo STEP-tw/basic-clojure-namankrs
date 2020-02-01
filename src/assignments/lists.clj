@@ -184,8 +184,8 @@
   [[1 4] [1 3] [1 5] [2 4] [2 3] [2 5] [3 4]]"
   {:level        :easy
    :use          '[for]
-   :implemented? false}
-  [seq1 seq2])
+   :implemented? true}
+  [seq1 seq2] (for [x seq1 y seq2 :while (not (= x y))] [x y]))
 
 (defn double-up
   "Given a collection, return a new collection that contains
