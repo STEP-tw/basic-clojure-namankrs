@@ -113,8 +113,7 @@
    :use          '[lazy-seq conj let :optionally letfn]
    :dont-use     '[loop recur dedupe]
    :implemented? false}
-  [coll] (lazy-seq
-           (reduce #(if (= (last %1) %2) %1 (concat %1 [%2])) `() coll)))
+  [coll] (lazy-seq (map first (partition-by identity coll))))
 
 (defn sum-of-adjacent-digits
   "Given a collection, returns a map of the sum of adjacent digits.
