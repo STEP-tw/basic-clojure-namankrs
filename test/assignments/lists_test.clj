@@ -129,4 +129,10 @@
 
 (deftest dedupe'-test
   (are [x y] (= x y)
+             `(1 2 3 4) (dedupe' [1 1 2 3 3 4])
              `(1 2 3 4 3) (dedupe' [1 1 2 3 4 3 3])))
+
+(deftest sum-of-adjacent-digits-test
+  (are [x y] (= x y)
+             `(3 5) (sum-of-adjacent-digits [1 2 3])
+             `(3 5 7) (sum-of-adjacent-digits [1 2 3 4])))
