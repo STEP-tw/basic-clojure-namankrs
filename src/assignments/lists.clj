@@ -200,7 +200,7 @@
   elements whose index is either divisible by three or five"
   {:level        :easy
    :use          '[keep-indexed when :optionally map-indexed filter]
-   :implemented? false}
+   :implemented? true}
   [coll] (keep-indexed #(if (or (zero? (mod %1 3)) (zero? (mod %1 5))) %2) coll))
 
 (defn sqr-of-the-first
@@ -210,8 +210,8 @@
   [4 5 6] => [16 16 16]"
   {:level        :easy
    :use          '[map constantly let]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll] (map (constantly (* (first coll) (first coll))) coll))
 
 (defn russian-dolls
   "Given a collection and a number, wrap each element in a nested vector

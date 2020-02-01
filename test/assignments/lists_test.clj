@@ -83,3 +83,6 @@
              `(0) (third-or-fifth [0 1 2])
              `(0 3 5) (third-or-fifth [0 1 2 3 4 5])
              `(0 3 5 6 9 10) (third-or-fifth [0 1 2 3 4 5 6 7 8 9 10])))
+
+(deftest sqr-of-the-first-test
+  (is (= `(16 16 16) (sqr-of-the-first `(4 5 6)))))
