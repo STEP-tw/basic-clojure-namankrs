@@ -135,12 +135,13 @@
 (def
   ^{:level        :easy
     :dont-use     '[loop recur for nth get]
-    :implemented? false}
+    :implemented? true}
   transpose
   "Transposes a given matrix.
   [[a b] [c d]] => [[a c] [b d]].
   Note this is a def. Not a defn.
-  Return a vector of vectors, not list of vectors or vectors of lists")
+  Return a vector of vectors, not list of vectors or vectors of lists"
+    (fn [matrix] (apply mapv vector matrix)))
 
 (defn difference
   "Given two collections, returns only the elements that are present

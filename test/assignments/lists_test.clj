@@ -45,3 +45,8 @@
              true (ascending? [1 2 2 3 4 4])
              false (ascending? [1 2 5 4])
              ))
+
+(deftest transpose-test
+  (are [x y] (= x y)
+             [[:a :c] [:b :d]] (transpose [[:a :b] [:c :d]])
+             [[:a :d :g] [:b :e :h] [:c :f :i]] (transpose [[:a :b :c] [:d :e :f] [:g :h :i]])))
