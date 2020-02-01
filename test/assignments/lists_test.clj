@@ -50,3 +50,9 @@
   (are [x y] (= x y)
              [[:a :c] [:b :d]] (transpose [[:a :b] [:c :d]])
              [[:a :d :g] [:b :e :h] [:c :f :i]] (transpose [[:a :b :c] [:d :e :f] [:g :h :i]])))
+
+(deftest difference-test
+  (are [x y] (= x y)
+             `(4 5) (difference [1 2 3] [3 4 5])
+             `() (difference [1 2] [1 2])
+             `() (difference [1 2 3] [])))

@@ -141,7 +141,7 @@
   [[a b] [c d]] => [[a c] [b d]].
   Note this is a def. Not a defn.
   Return a vector of vectors, not list of vectors or vectors of lists"
-    (fn [matrix] (apply mapv vector matrix)))
+  (fn [matrix] (apply mapv vector matrix)))
 
 (defn difference
   "Given two collections, returns only the elements that are present
@@ -149,8 +149,8 @@
   {:level        :easy
    :use          '[remove set]
    :dont-use     '[loop recur if]
-   :implemented? false}
-  [coll1 coll2])
+   :implemented? true}
+  [coll1 coll2] (remove (set coll1) (set coll2)))
 
 (defn union
   "Given two collections, returns a new collection with elements from the second
