@@ -120,3 +120,9 @@
                24 (reduce' * 4 [2 3])
                14 (reduce' + 5 [2 3 4 0])
                )))
+
+(deftest distinct'-test
+  (are [x y] (= x y)
+             `(1 2 3) (distinct' `(1 1 2 2 3 3 3))
+             `(1 2 3) (distinct' `(1 2 2 1 3 3 3))
+             `() (distinct' `())))

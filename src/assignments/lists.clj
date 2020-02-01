@@ -101,8 +101,9 @@
   {:level        :medium
    :use          '[lazy-seq set conj let :optionally letfn]
    :dont-use     '[loop recur distinct]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll] (lazy-seq
+           (reduce #(if (some (partial = %2) %1) %1 (concat %1 [%2])) `() coll)))
 
 (defn dedupe'
   "Implement your own lazy sequence version of dedupe which returns
