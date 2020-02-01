@@ -96,3 +96,10 @@
   (are [x y] (= x y)
              `(1 2 0 4 5 0) (muted-thirds [1 2 3 4 5 6])
              `() (muted-thirds [])))
+
+(deftest palindrome?-test
+  (are [x y] (= x y)
+             true (palindrome? [])
+             true (palindrome? [\n \a \m \a \n])
+             true (palindrome? [1 0 0 1])
+             false (palindrome? [\n \a \m])))

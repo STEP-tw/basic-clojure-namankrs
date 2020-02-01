@@ -254,8 +254,11 @@
   {:level        :easy
    :use          '[empty? loop recur butlast rest]
    :dont-use     '[reverse]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll] (loop [coll coll result true]
+           (if (empty? coll)
+             result
+             (recur (rest (butlast coll)) (and result (= (first coll) (last coll)))))))
 
 (defn index-of
   "index-of takes a sequence and an element and finds the index
