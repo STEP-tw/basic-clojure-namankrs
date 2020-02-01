@@ -31,8 +31,11 @@
    :use          '[loop recur]
    :dont-use     '[reduce]
    :implemented? false}
-  ([f coll])
-  ([f init coll]))
+  ([f coll] (loop [collection (drop 2 coll) result (f (first coll) (second coll))]
+              (if (empty? collection)
+                result
+                (recur (rest collection) (f result (first collection))))))
+  ([f init coll] (reduce' f (cons init coll))))
 
 (defn count'
   "Implement your own version of count that counts the
@@ -267,7 +270,7 @@
   {:level        :easy
    :use          '[loop recur rest]
    :dont-use     '[.indexOf memfn]
-   :implemented? false}
+   :implemented? true}
   [coll n] (loop [coll coll curr-index 0 match-index -1]
              (if (or (empty? coll) (not= match-index -1))
                match-index

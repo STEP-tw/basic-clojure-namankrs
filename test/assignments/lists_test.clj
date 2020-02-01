@@ -109,3 +109,14 @@
              0 (index-of [1 2 3 4] 1)
              2 (index-of [1 2 3 4] 3)
              -1 (index-of [1 2 3 4] 5)))
+
+(deftest reduce'-test
+  (testing "without initial value"
+    (are [x y] (= x y)
+               24 (reduce' * [2 3 4])
+               14 (reduce' + [5 2 3 4 0])))
+  (testing "with initial value"
+    (are [x y] (= x y)
+               24 (reduce' * 4 [2 3])
+               14 (reduce' + 5 [2 3 4 0])
+               )))
