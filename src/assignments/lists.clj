@@ -31,7 +31,7 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[reduce]
-   :implemented? false}
+   :implemented? true}
   ([f coll] (loop [collection (drop 2 coll) result (f (first coll) (second coll))]
               (if (empty? collection)
                 result
