@@ -22,7 +22,7 @@
                 (if (empty? coll)
                   result
                   (recur (rest coll)
-                    (if (true? (pred (first coll))) (concat result [(first coll)]) result)))))
+                         (if (true? (pred (first coll))) (concat result [(first coll)]) result)))))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
@@ -228,7 +228,10 @@
    :use          '[iterate mapv partial vector drop first ->>]
    :dont-use     '[for loop recur reduce]
    :implemented? false}
-  [coll nesting-factor])
+  [coll nesting-factor] (->> coll
+                             (iterate (partial mapv vector))
+                             (drop (- nesting-factor 1))
+                             first))
 
 (defn interleave-even [coll] (apply interleave (split-at (int (/ (count coll) 2)) coll)))
 

@@ -144,3 +144,9 @@
     (are [x y] (= x y)
                [4 5 6] (max-three-digit-sequence [1 2 4 5 6])
                [5 2 4] (max-three-digit-sequence [1 3 5 2 4 1]))))
+
+(deftest russian-dolls-test
+  (are [x y] (= x y)
+             [[1] [2]] (russian-dolls [1 2] 2)
+             [[[[1]]] [[[2]]]] (russian-dolls [1 2] 4))
+  )
