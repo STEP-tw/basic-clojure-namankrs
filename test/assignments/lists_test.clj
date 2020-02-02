@@ -9,8 +9,8 @@
 
 (deftest filter'-test
   (are [x y] (= x y)
-             `(1 2) (filter pos-int? `(-1 1 2))
-             `(3 4) (filter (partial < 2) `(1 2 3 4))))
+             `(1 2) (filter' pos-int? `(-1 1 2))
+             `(3 4) (filter' (partial < 2) `(1 2 3 4))))
 
 (deftest count'-test
   (are [x y] (= x y)
@@ -136,3 +136,11 @@
   (are [x y] (= x y)
              `(3 5) (sum-of-adjacent-digits [1 2 3])
              `(3 5 7) (sum-of-adjacent-digits [1 2 3 4])))
+
+(deftest max-three-digit-sequence-test
+  (testing "less than 3 elements"
+    (is (= [1 2] (max-three-digit-sequence [1 2]))))
+  (testing "three elements or more"
+    (are [x y] (= x y)
+               [4 5 6] (max-three-digit-sequence [1 2 4 5 6])
+               [5 2 4] (max-three-digit-sequence [1 3 5 2 4 1]))))
