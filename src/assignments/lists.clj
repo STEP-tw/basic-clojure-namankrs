@@ -1,5 +1,17 @@
 (ns assignments.lists)
 
+(defn all-first [colls]
+  (loop [collections colls result `()]
+    (if (empty? collections)
+      result
+      (recur (rest collections) (concat result [(first (first collections))])))))
+
+(defn all-last [colls]
+  (loop [collections colls result `()]
+    (if (empty? collections)
+      result
+      (recur (rest collections) (concat result [(rest (first collections))])))))
+
 (defn map'
   "Implement a non-lazy version of map that accepts a
   mapper function and several collections. The output
@@ -8,7 +20,11 @@
    :use          '[loop recur]
    :dont-use     '[map]
    :implemented? false}
-  [f & colls])
+  [f & colls] (loop [collections colls result `()]
+                (if (every? empty? collections)
+                  result
+                  (recur (all-last collections)
+                         (concat result [(apply f (all-first collections))])))))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a

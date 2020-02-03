@@ -4,8 +4,14 @@
 
 (deftest lists
   (testing "map"
-    (testing "identity with single coll"
-      (is (= [1 2 3] (map' identity [1 2 3]))))))
+    (testing "with single coll"
+      (are [x y] (= x y)
+                 [1 2 3] (map' identity [1 2 3])
+                 `(2 4 6) (map' (partial * 2) `(1 2 3))))
+    (testing "with multiple colls"
+      (are [x y] (= x y)
+                 [4 16 25] (map' * [2 4 5] [2 4 5])
+                 [4 8 10] (map' + [2 4 5] [2 4 5])))))
 
 (deftest filter'-test
   (are [x y] (= x y)
@@ -150,3 +156,4 @@
              [[1] [2]] (russian-dolls [1 2] 2)
              [[[[1]]] [[[2]]]] (russian-dolls [1 2] 4))
   )
+
