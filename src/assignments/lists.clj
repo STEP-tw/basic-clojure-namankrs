@@ -227,13 +227,14 @@
   {:level        :medium
    :use          '[iterate mapv partial vector drop first ->>]
    :dont-use     '[for loop recur reduce]
-   :implemented? false}
+   :implemented? true}
   [coll nesting-factor] (->> coll
                              (iterate (partial mapv vector))
                              (drop (- nesting-factor 1))
                              first))
 
-(defn interleave-even [coll] (apply interleave (split-at (int (/ (count coll) 2)) coll)))
+(defn interleave-even [coll]
+  (apply interleave (split-at (int (/ (count coll) 2)) coll)))
 
 (defn split-comb
   "Given a collection, return a new sequence where the first
@@ -257,7 +258,7 @@
    :use          '[map cycle]
    :dont-use     '[loop recur map-indexed take take-nth]
    :implemented? true}
-  [coll] (map #(if (= (first %) 0) 0 (second %)) (map vector (cycle [1 2 0]) coll)))
+  [coll] (map * (cycle `(1 1 0)) coll))
 
 (defn palindrome?
   "Implement a recursive palindrome check of any given sequence"
