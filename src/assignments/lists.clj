@@ -19,7 +19,7 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[map]
-   :implemented? false}
+   :implemented? true}
   [f & colls] (loop [collections colls result `()]
                 (if (every? empty? collections)
                   result
