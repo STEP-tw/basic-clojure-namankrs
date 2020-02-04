@@ -1,4 +1,4 @@
-(ns assignments.conditions-test
+  (ns assignments.conditions-test
   (:require [clojure.test :refer :all]
             [assignments.conditions :refer :all]))
 
@@ -35,11 +35,11 @@
   (testing "coll with values"
     (are [x y] (= x y)
                [1 1 2] (duplicate-first [1 2])
-               `(4 4 3) (duplicate-first `(4 3))))
+               '(4 4 3) (duplicate-first '(4 3))))
   (testing "empty coll"
     (are [x y] (= x y)
                nil (duplicate-first [])
-               nil (duplicate-first `()))))
+               nil (duplicate-first '()))))
 
 (deftest five-point-someone-test
   (are [x y] (= x y)
@@ -50,9 +50,9 @@
 
 (deftest repeat-and-truncate-test
   (testing "truncate"
-    (is (= `(1 2) (repeat-and-truncate `(1 2 3 4) false true 2))))
+    (is (= '(1 2) (repeat-and-truncate '(1 2 3 4) false true 2))))
   (testing "repeat and truncate"
-    (is (= `(1 2 1 2) (repeat-and-truncate `(1 2) true true 4)))))
+    (is (= '(1 2 1 2) (repeat-and-truncate '(1 2) true true 4)))))
 
 (deftest order-in-words-test
   (are [x y] (= x y)
@@ -64,7 +64,7 @@
   (are [x y] (= x y)
              :zero (zero-aliases 0)
              :empty (zero-aliases [])
-             :empty (zero-aliases `())
+             :empty (zero-aliases '())
              :empty-set (zero-aliases #{})
              :empty-map (zero-aliases {})
              :empty-string (zero-aliases "")
@@ -73,13 +73,13 @@
 (deftest zero-separated-palindrome-test
   (testing "list with values"
     (are [x y] (= x y)
-               `(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3])
-               `(7 6 5 0 5 6 7) (zero-separated-palindrome [4 5 6]))))
+               '(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3])
+               '(7 6 5 0 5 6 7) (zero-separated-palindrome [4 5 6]))))
 
 (deftest conditions-apply-test
   (are [x y] (= x y)
-             :wonder-woman (conditions-apply `(1 2 3))
-             :durga (conditions-apply `(:a :b :c :d))
-             :cleopatra (conditions-apply `([2 3] [4 5]))
-             :tuntun (conditions-apply `(3 1 2)))
+             :wonder-woman (conditions-apply '(1 2 3))
+             :durga (conditions-apply '(:a :b :c :d))
+             :cleopatra (conditions-apply '([2 3] [4 5]))
+             :tuntun (conditions-apply '(3 1 2)))
   )

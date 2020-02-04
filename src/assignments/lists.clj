@@ -1,13 +1,13 @@
 (ns assignments.lists)
 
 (defn all-first [colls]
-  (loop [collections colls result `()]
+  (loop [collections colls result '()]
     (if (empty? collections)
       result
       (recur (rest collections) (concat result [(first (first collections))])))))
 
 (defn all-last [colls]
-  (loop [collections colls result `()]
+  (loop [collections colls result '()]
     (if (empty? collections)
       result
       (recur (rest collections) (concat result [(rest (first collections))])))))
@@ -20,7 +20,7 @@
    :use          '[loop recur]
    :dont-use     '[map]
    :implemented? true}
-  [f & colls] (loop [collections colls result `()]
+  [f & colls] (loop [collections colls result '()]
                 (if (every? empty? collections)
                   result
                   (recur (all-last collections)
@@ -34,7 +34,7 @@
    :use          '[loop recur]
    :dont-use     '[filter]
    :implemented? true}
-  [pred coll] (loop [coll coll result `()]
+  [pred coll] (loop [coll coll result '()]
                 (if (empty? coll)
                   result
                   (recur (rest coll)
@@ -74,7 +74,7 @@
    :dont-use     '[reverse]
    :implemented? true}
   ([coll] (if (seqable? coll)
-            (reduce #(conj %1 %2) `() coll)
+            (reduce #(conj %1 %2) '() coll)
             nil)))
 
 (defn every?'
@@ -120,7 +120,7 @@
    :dont-use     '[loop recur distinct]
    :implemented? true}
   [coll] (lazy-seq
-           (reduce #(if (some (partial = %2) %1) %1 (concat %1 [%2])) `() coll)))
+           (reduce #(if (some (partial = %2) %1) %1 (concat %1 [%2])) '() coll)))
 
 (defn dedupe'
   "Implement your own lazy sequence version of dedupe which returns
@@ -197,7 +197,7 @@
   "Calculate all the points around the origin
   [-1 -1] [0 -1] [1 -1] etc. There should be 8 points
   Note this is a def, not a defn"
-  (fn [] (rest (for [x `(0 -1 1) y `(0 -1 1)] [x y]))))
+  (fn [] (rest (for [x '(0 -1 1) y '(0 -1 1)] [x y]))))
 
 
 (defn cross-product
@@ -274,7 +274,7 @@
    :use          '[map cycle]
    :dont-use     '[loop recur map-indexed take take-nth]
    :implemented? true}
-  [coll] (map * (cycle `(1 1 0)) coll))
+  [coll] (map * (cycle '(1 1 0)) coll))
 
 (defn palindrome?
   "Implement a recursive palindrome check of any given sequence"
