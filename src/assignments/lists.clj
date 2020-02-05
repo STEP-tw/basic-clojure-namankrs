@@ -2,15 +2,15 @@
 
 (defn all-first [colls]
   (loop [collections colls result '()]
-    (if (empty? collections)
-      result
-      (recur (rest collections) (concat result [(first (first collections))])))))
+        (if (empty? collections)
+            result
+            (recur (rest collections) (concat result [(first (first collections))])))))
 
-(defn all-last [colls]
+(defn all-rest [colls]
   (loop [collections colls result '()]
-    (if (empty? collections)
-      result
-      (recur (rest collections) (concat result [(rest (first collections))])))))
+        (if (empty? collections)
+            result
+            (recur (rest collections) (concat result [(rest (first collections))])))))
 
 (defn map'
   "Implement a non-lazy version of map that accepts a
@@ -21,10 +21,10 @@
    :dont-use     '[map]
    :implemented? true}
   [f & colls] (loop [collections colls result '()]
-                (if (every? empty? collections)
-                  result
-                  (recur (all-last collections)
-                         (concat result [(apply f (all-first collections))])))))
+                    (if (some empty? collections)
+                        result
+                        (recur (all-rest collections)
+                               (concat result [(apply f (all-first collections))])))))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
@@ -35,10 +35,10 @@
    :dont-use     '[filter]
    :implemented? true}
   [pred coll] (loop [coll coll result '()]
-                (if (empty? coll)
-                  result
-                  (recur (rest coll)
-                         (if (true? (pred (first coll))) (concat result [(first coll)]) result)))))
+                    (if (empty? coll)
+                        result
+                        (recur (rest coll)
+                               (if (true? (pred (first coll))) (concat result [(first coll)]) result)))))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
@@ -49,9 +49,9 @@
    :dont-use     '[reduce]
    :implemented? true}
   ([f coll] (loop [collection (drop 2 coll) result (f (first coll) (second coll))]
-              (if (empty? collection)
-                result
-                (recur (rest collection) (f result (first collection))))))
+                  (if (empty? collection)
+                      result
+                      (recur (rest collection) (f result (first collection))))))
   ([f init coll] (reduce' f (cons init coll))))
 
 (defn count'
@@ -62,9 +62,9 @@
    :dont-use     '[count]
    :implemented? true}
   ([coll] (loop [coll coll count 0]
-            (if (empty? coll)
-              count
-              (recur (rest coll) (inc count))))))
+                (if (empty? coll)
+                    count
+                    (recur (rest coll) (inc count))))))
 
 (defn reverse'
   "Implement your own version of reverse that reverses a coll.
@@ -74,8 +74,8 @@
    :dont-use     '[reverse]
    :implemented? true}
   ([coll] (if (seqable? coll)
-            (reduce #(conj %1 %2) '() coll)
-            nil)))
+              (reduce #(conj %1 %2) '() coll)
+              nil)))
 
 (defn every?'
   "Implement your own version of every? that checks if every
@@ -85,9 +85,9 @@
    :dont-use     '[every?]
    :implemented? true}
   ([pred coll] (loop [coll coll result true]
-                 (if (empty? coll)
-                   result
-                   (recur (rest coll) (and result (pred (first coll))))))))
+                     (if (empty? coll)
+                         result
+                         (recur (rest coll) (and result (pred (first coll))))))))
 
 (defn some?'
   "Implement your own version of some that checks if at least one
@@ -99,9 +99,9 @@
    :dont-use     '[some]
    :implemented? true}
   ([pred coll] (loop [coll coll result false]
-                 (if (empty? coll)
-                   result
-                   (recur (rest coll) (or result (pred (first coll))))))))
+                     (if (empty? coll)
+                         result
+                         (recur (rest coll) (or result (pred (first coll))))))))
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
@@ -151,8 +151,8 @@
    :dont-use     '[loop recur partition]
    :implemented? true}
   [coll] (if (< (count coll) 3)
-           coll
-           (apply max-key (partial apply +) (map vector coll (next coll) (nnext coll)))))
+             coll
+             (apply max-key (partial apply +) (map vector coll (next coll) (nnext coll)))))
 
 ;; transpose is a def. Not a defn.
 (def
@@ -263,8 +263,8 @@
    :dont-use     '[loop recur map-indexed take drop]
    :implemented? true}
   [coll] (if (even? (count coll))
-           (interleave-even coll)
-           (concat (interleave-even coll) (take-last 1 coll))))
+             (interleave-even coll)
+             (concat (interleave-even coll) (take-last 1 coll))))
 
 (defn muted-thirds
   "Given a sequence of numbers, make every third element
@@ -283,9 +283,9 @@
    :dont-use     '[reverse]
    :implemented? true}
   [coll] (loop [coll coll result true]
-           (if (empty? coll)
-             result
-             (recur (rest (butlast coll)) (and result (= (first coll) (last coll)))))))
+               (if (empty? coll)
+                   result
+                   (recur (rest (butlast coll)) (and result (= (first coll) (last coll)))))))
 
 (defn index-of
   "index-of takes a sequence and an element and finds the index
@@ -296,12 +296,27 @@
    :dont-use     '[.indexOf memfn]
    :implemented? true}
   [coll n] (loop [coll coll curr-index 0 match-index -1]
-             (if (or (empty? coll) (not= match-index -1))
-               match-index
-               (recur (rest coll) (inc curr-index) (if (= (first coll) n) curr-index -1)))))
+                 (if (or (empty? coll) (not= match-index -1))
+                     match-index
+                     (recur (rest coll) (inc curr-index) (if (= (first coll) n) curr-index -1)))))
+
+(defn valid-sudoku-row?
+  [row]
+  (= (set (range 1 10)) (set row)))
+
+(defn get-sudoku-grids
+  [board]
+  (->> board
+       (map (partial partition 3))
+       (partition 3)
+       (map (partial apply map list))
+       (mapcat identity)
+       (map flatten)))
 
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."
   {:level        :hard
-   :implemented? false}
-  [grid])
+   :implemented? true}
+  [grid]
+  (every?' valid-sudoku-row?
+           (concat grid (transpose grid) (get-sudoku-grids grid))))
