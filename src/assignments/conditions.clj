@@ -39,8 +39,8 @@
    :implemented? true}
   [coll] (when-first [first-value coll]
            (if (seq? coll)
-             (conj coll first-value)
-             (concat [first-value] coll))))
+               (conj coll first-value)
+               (concat [first-value] coll))))
 
 (defn five-point-someone
   "Returns :chetan-bhagat if y is 5.
@@ -121,7 +121,6 @@
   [zero-like-value] (case zero-like-value
                       0 :zero
                       [] :empty
-                      `() :empty
                       #{} :empty-set
                       {} :empty-map
                       "" :empty-string
