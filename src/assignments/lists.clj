@@ -163,7 +163,7 @@
   [[a b] [c d]] => [[a c] [b d]].
   Note this is a def. Not a defn.
   Return a vector of vectors, not list of vectors or vectors of lists"
-  (apply mapv vector))
+  (partial apply mapv vector))
 
 (defn difference
   "Given two collections, returns only the elements that are present
@@ -196,7 +196,7 @@
   "Calculate all the points around the origin
   [-1 -1] [0 -1] [1 -1] etc. There should be 8 points
   Note this is a def, not a defn"
-  (for [x '(0 -1 1) y '(0 -1 1) :when (not= x y 0)] [x y]))
+  #(for [x '(0 -1 1) y '(0 -1 1) :when (not= x y 0)] [x y]))
 
 
 (defn cross-product
