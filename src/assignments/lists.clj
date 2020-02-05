@@ -4,7 +4,7 @@
   (loop [collections colls result '()]
         (if (empty? collections)
             result
-            (recur (rest collections) (concat result [(first (first collections))])))))
+            (recur (rest collections) (concat result [(ffirst collections)])))))
 
 (defn all-rest [colls]
   (loop [collections colls result '()]
@@ -73,9 +73,8 @@
    :use          '[reduce conj seqable? when]
    :dont-use     '[reverse]
    :implemented? true}
-  ([coll] (if (seqable? coll)
-              (reduce #(conj %1 %2) '() coll)
-              nil)))
+  ([coll] (when (seqable? coll)
+            (reduce conj '() coll))))
 
 (defn every?'
   "Implement your own version of every? that checks if every
@@ -208,7 +207,7 @@
   {:level        :easy
    :use          '[for]
    :implemented? true}
-  [seq1 seq2] (for [x seq1 y seq2 :while (not (= x y))] [x y]))
+  [seq1 seq2] (for [x seq1 y seq2 :while (not= x y)] [x y]))
 
 (defn double-up
   "Given a collection, return a new collection that contains
@@ -246,7 +245,7 @@
    :implemented? true}
   [coll nesting-factor] (->> coll
                              (iterate (partial mapv vector))
-                             (drop (- nesting-factor 1))
+                             (drop (dec nesting-factor))
                              first))
 
 (defn interleave-even [coll]
