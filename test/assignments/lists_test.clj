@@ -63,6 +63,7 @@
 (deftest difference-test
   (are [x y] (= x y)
              '(4 5) (difference [1 2 3] [3 4 5])
+             '(3 4 5) (difference [1 2] [3 4 5 1 2])
              '() (difference [1 2] [1 2])
              '() (difference [1 2 3] [])))
 

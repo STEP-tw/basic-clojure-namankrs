@@ -172,7 +172,7 @@
    :use          '[remove set]
    :dont-use     '[loop recur if]
    :implemented? true}
-  [coll1 coll2] (remove (set coll1) (set coll2)))
+  [coll1 coll2] (remove (set coll1) coll2))
 
 (defn union
   "Given two collections, returns a new collection with elements from the second
@@ -307,10 +307,9 @@
   [board]
   (->> board
        (map (partial partition 3))
-       (partition 3)
-       (map (partial apply map list))
-       (mapcat identity)
-       (map flatten)))
+       (transpose)
+       (flatten)
+       (partition 9)))
 
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."
