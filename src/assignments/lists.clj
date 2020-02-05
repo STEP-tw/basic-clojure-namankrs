@@ -1,16 +1,8 @@
 (ns assignments.lists)
 
-(defn all-first [colls]
-  (loop [collections colls result '()]
-        (if (empty? collections)
-            result
-            (recur (rest collections) (concat result [(ffirst collections)])))))
-
-(defn all-rest [colls]
-  (loop [collections colls result '()]
-        (if (empty? collections)
-            result
-            (recur (rest collections) (concat result [(rest (first collections))])))))
+(defn group-by-index
+  [colls]
+  (partition (count colls) (apply interleave colls)))
 
 (defn map'
   "Implement a non-lazy version of map that accepts a
@@ -20,11 +12,11 @@
    :use          '[loop recur]
    :dont-use     '[map]
    :implemented? true}
-  [f & colls] (loop [collections colls result '()]
-                    (if (some empty? collections)
+  [f & colls] (loop [collections (group-by-index colls) result '()]
+                    (if (not= (count (first collections)) (count colls))
                         result
-                        (recur (all-rest collections)
-                               (concat result [(apply f (all-first collections))])))))
+                        (recur (rest collections)
+                               (concat result [(apply f (first collections))])))))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
